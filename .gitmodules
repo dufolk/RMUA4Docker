@@ -1,0 +1,6 @@
+[submodule "RMUA"]
+	path = RMUA
+	url = https://github.com/dufolk/RMUA.git
+[submodule "roborts/src"]
+	path = roborts/src
+	url = https://github.com/RoboMaster/RoboRTS-Base.git
