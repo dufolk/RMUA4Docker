@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY ./RMUA /root/RMUA
 COPY ./roborts /root/roborts
 COPY ./client.py /root/RMUA/src/sentry/scripts/client.py
+COPY ./onnxruntime_gpu-1.18.0-cp38-cp38-linux_aarch64.whl /root/onnxruntime_gpu-1.18.0-cp38-cp38-linux_aarch64.whl
 
 # 编译roborts
 WORKDIR /root/roborts
@@ -36,6 +37,7 @@ RUN /bin/bash -c "source /root/roborts/devel/setup.bash && \
     catkin_init_workspace && \
     cd vision && \
     pip install -r requirements.txt && \
+    pip install /root/onnxruntime_gpu-1.18.0-cp38-cp38-linux_aarch64.whl && \
     cd ../.. && \
     catkin_make --only-pkg-with-deps sentry && \
     catkin_make -DCATKIN_WHITELIST_PACKAGES=\"decision;navigation;vision\""
