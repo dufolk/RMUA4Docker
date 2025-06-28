@@ -29,5 +29,5 @@ cd ${DIR}
 # . 当前目录
 sudo docker build \
     --build-arg BASE_IMAGE=${BASE_IMAGE} \
-    -t ${IMAGE_REPO}:${IMAGE_TAG}_test \
+    -t ${IMAGE_REPO}:${IMAGE_TAG} \
     -f Dockerfile .
