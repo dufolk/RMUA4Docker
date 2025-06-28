@@ -1,5 +1,5 @@
 # 基础镜像
-ARG BASE_IMAGE=ros:noetic-ros-base-focal 
+ARG BASE_IMAGE=nvcr.io/nvidia/l4t-jetpack:r35.4.1 
 FROM ${BASE_IMAGE}
 
 # 安装ROS
@@ -13,7 +13,6 @@ RUN apt update \
     && echo "- {choose: 3, desc: noetic(ROS1)}\n" >> fish_install.yaml \
     && echo "- {choose: 1, desc: noetic(ROS1)桌面版}\n" >> fish_install.yaml \
     && wget http://fishros.com/install  -O fishros && /bin/bash fishros \
-    # 进行最后的清理
     && rm -rf /var/lib/apt/lists/*  /tmp/* /var/tmp/* \
     && apt-get clean && apt autoclean 
 
@@ -40,7 +39,7 @@ RUN /bin/bash -c "source /root/roborts/devel/setup.bash && \
     cd ../.. && \
     catkin_make --only-pkg-with-deps sentry && \
     catkin_make -DCATKIN_WHITELIST_PACKAGES=\"decision;navigation;vision\""
-RUN /bin/bash -c "source /root/RMUA/devel/setup.bash"
+RUN echo "source /root/RMUA/devel/setup.bash" >> /root/.bashrc
 
 
 CMD ["bash"]
